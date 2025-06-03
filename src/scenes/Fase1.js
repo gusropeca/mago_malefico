@@ -35,7 +35,7 @@ export class Fase1 extends Phaser.Scene {
 
             this.anims.create({
                 key: 'andarMago',
-                frames: this.anims.generateFrameNa 	mes('magoAtlas', {
+                frames: this.anims.generateFrameNames('magoAtlas', {
                     start: 0,
                     end: 3,
                     zeroPad: 0,
