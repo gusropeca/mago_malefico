@@ -10,6 +10,7 @@ export class Fase1 extends Phaser.Scene {
         this.load.image('FlorestaTitulo', 'assets/aFlorestaPerdida.png')
         this.load.image('fireball', 'assets/FIREBALL.png');
         this.load.atlas('magoAtaque', 'assets/sprites/AtaqueDoMago.png', 'assets/sprites/AtaqueDoMago.json');
+        this.load.image('inimigo', 'assets/cavaleiro.png');
 
 
         
@@ -59,6 +60,7 @@ export class Fase1 extends Phaser.Scene {
                 repeat: 0
             });
 
+
             
             this.estaAtacando = false;
 
@@ -75,6 +77,16 @@ export class Fase1 extends Phaser.Scene {
                 }
             });
 
+            this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, inimigo) => {
+                fireball.disableBody(true, true);
+                inimigo.vida -= 20;
+
+                if (inimigo.vida <= 0) {
+                    inimigo.destroy(); // ou tocar animação de morte
+                }
+            });
+
+
 
             this.player.setScale(2);
 
@@ -82,11 +94,37 @@ export class Fase1 extends Phaser.Scene {
 
             this.player.setSize(42, 60);  // Largura, Altura (ajuste conforme seu sprite)
             this.player.setOffset(0, 14); // Deslocamento X, Y (ajuste conforme necessário)
-            
-            
             this.player.setDebug(true);
 
+
+            this.inimigos = this.physics.add.group();
+            const inimigo = this.physics.add.sprite(600, 500, 'inimigo');
+            inimigo.setCollideWorldBounds(true);
+            inimigo.vida = 100;
+            inimigo.tempoAtaque = 0;
+            this.inimigos.add(inimigo);
+
+
             this.physics.add.collider(this.player, this.chao);
+            this.physics.add.collider(this.inimigos, this.chao);
+
+            this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, inimigo) => {
+                fireball.disableBody(true, true);
+                inimigo.vida -= 20;
+                if (inimigo.vida <= 0) inimigo.destroy();
+            });
+
+
+            this.physics.add.overlap(this.player, this.inimigos, (player, inimigo) => {
+            const now = this.time.now;
+            if (!player.invulneravel && now - inimigo.tempoAtaque > 1000) {
+                player.vida -= 10;
+                player.invulneravel = true;
+                inimigo.tempoAtaque = now;
+                this.time.delayedCall(1000, () => (player.invulneravel = false));
+                }
+            });
+
 
             this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -99,6 +137,10 @@ export class Fase1 extends Phaser.Scene {
 
             // Verifica se o player saiu da tela (lado direito)
             this.player.body.setCollideWorldBounds(true);
+
+            this.barraVida = this.add.graphics();
+            this.atualizarHUD();
+            
 
 
            
@@ -154,6 +196,18 @@ export class Fase1 extends Phaser.Scene {
             }
         }
 
+            this.inimigos.children.iterate((inimigo) => {
+            if (!inimigo.active) return;
+            const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, inimigo.x, inimigo.y);
+            if (dist < 200) {
+                this.physics.moveToObject(inimigo, this.player, 60);
+            } else {
+                inimigo.setVelocity(0);
+                }
+            });
+
+            this.atualizarHUD();
+
 
 
             // Verifica se o player chegou no limite direito
@@ -207,6 +261,15 @@ export class Fase1 extends Phaser.Scene {
                 this.estaAtacando = false;
             });
      }
+
+        atualizarHUD(){
+            this.barraVida.clear();
+            this.barraVida.fillStyle(0x000000);
+            this.barraVida.fillRect(20, 20, 104, 14);
+            this.barraVida.fillStyle(0xff0000);
+            this.barraVida.fillRect(22, 22, Math.max(0, this.player.vida), 10);
+         }
+
 
      
 
