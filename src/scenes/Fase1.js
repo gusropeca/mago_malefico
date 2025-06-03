@@ -226,8 +226,13 @@ export class Fase1 extends Phaser.Scene {
             this.inimigos.children.iterate((inimigo) => {
             if (!inimigo.active) return;
             const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, inimigo.x, inimigo.y);
-            if (dist < 200) {
-                this.physics.moveToObject(inimigo, this.player, 60);
+	    if (dist < 200) {
+	    	this.physics.moveToObject(inimigo, this.player, 60);
+	    if (inimigo.anims.getName() !== 'ataqueInimigo') {
+		inimigo.setTexture('inimigoAndar');
+		inimigo.play('andarInimigo', true);
+	    }
+	}
             } else {
                 inimigo.setVelocity(0);
                 }
@@ -235,13 +240,7 @@ export class Fase1 extends Phaser.Scene {
 
             this.atualizarHUD();
             
-            if (dist < 200) {
-	    this.physics.moveToObject(inimigo, this.player, 60);
-	    if (inimigo.anims.getName() !== 'ataqueInimigo') {
-		inimigo.setTexture('inimigoAndar');
-		inimigo.play('andarInimigo', true);
-	    }
-	}
+     
 
 
 
