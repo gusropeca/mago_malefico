@@ -10,8 +10,7 @@ export class Fase1 extends Phaser.Scene {
         this.load.image('FlorestaTitulo', 'assets/aFlorestaPerdida.png')
         this.load.image('fireball', 'assets/FIREBALL.png');
         this.load.atlas('magoAtaque', 'assets/sprites/AtaqueDoMago.png', 'assets/sprites/AtaqueDoMago.json');
-        this.load.atlas('inimigoAndar', 'assets/sprites/AndarCavaleiro1.png', 'assets/sprites/AndarCavaleiro1.json');
-        this.load.atlas('inimigoAtaque', 'assets/sprites/AtaqueCavaleiro1.png', 'assets/sprites/AtaqueCavaleiro1.json');
+        this.load.image('inimigo', 'assets/cavaleiro.png');
 
 
         
@@ -49,7 +48,7 @@ export class Fase1 extends Phaser.Scene {
             this.player = this.physics.add.sprite(100, 450,'magoAtlas', 'AndarDoMago 0.aseprite'); // nome da imagem carregada no preload
 
 
-      	  this.anims.create({
+            this.anims.create({
                 key: 'ataqueMago',
                 frames: this.anims.generateFrameNames('magoAtaque', {
                     start: 0,
@@ -60,19 +59,6 @@ export class Fase1 extends Phaser.Scene {
                 frameRate: 5,
                 repeat: 0
             });
-            
-            
-            this.anims.create({
-		    key: 'ataqueInimigo',
-		    frames: this.anims.generateFrameNames('inimigoAtaque', {
-			start: 0,
-			end: 3,
-			prefix: 'AtaqueCavaleiro1 ',
-			suffix: '.aseprite'
-		    }),
-		    frameRate: 6,
-		    repeat: 0
-	});
 
 
             
@@ -129,27 +115,15 @@ export class Fase1 extends Phaser.Scene {
             });
 
 
-	    this.physics.add.overlap(this.player, this.inimigos, (player, inimigo) => {
-	    const now = this.time.now;
-	    if (!player.invulneravel && now - inimigo.tempoAtaque > 1000) {
-		player.vida -= 10;
-		player.invulneravel = true;
-		inimigo.tempoAtaque = now;
-
-		// Troca a textura para o atlas de ataque e toca a animação
-		inimigo.setTexture('inimigoAtaque');
-		inimigo.play('ataqueInimigo');
-
-		// Após o ataque, volta para a textura de andar
-		inimigo.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-		    inimigo.setTexture('inimigoAndar');
-		});
-
-		this.time.delayedCall(1000, () => (player.invulneravel = false));
-	    }
-	});
-
-
+            this.physics.add.overlap(this.player, this.inimigos, (player, inimigo) => {
+            const now = this.time.now;
+            if (!player.invulneravel && now - inimigo.tempoAtaque > 1000) {
+                player.vida -= 10;
+                player.invulneravel = true;
+                inimigo.tempoAtaque = now;
+                this.time.delayedCall(1000, () => (player.invulneravel = false));
+                }
+            });
 
 
             this.cursors = this.input.keyboard.createCursorKeys();
@@ -226,21 +200,14 @@ export class Fase1 extends Phaser.Scene {
             this.inimigos.children.iterate((inimigo) => {
             if (!inimigo.active) return;
             const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, inimigo.x, inimigo.y);
-	    if (dist < 200) {
-	    this.physics.moveToObject(inimigo, this.player, 60);
-		    if (inimigo.anims.getName() !== 'ataqueInimigo') {
-		        inimigo.setTexture('inimigoAndar');
-		        inimigo.play('andarInimigo', true);
-	    		}
-		}else {
+            if (dist < 200) {
+                this.physics.moveToObject(inimigo, this.player, 60);
+            } else {
                 inimigo.setVelocity(0);
                 }
             });
 
             this.atualizarHUD();
-            
-     
-
 
 
 
