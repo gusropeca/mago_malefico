@@ -25,7 +25,7 @@ export class Fase1 extends Phaser.Scene {
             fase2.setScale(0.3);
 
 
-            this.chao = this.physics.add.sprite(400, 300, 'FlorestaChao')
+            this.chao = this.physics.add.staticSprite(400, 300, 'FlorestaChao')
          
             this.background = this.add.tileSprite(400, 300, 800, 600, 'Floresta');
 
