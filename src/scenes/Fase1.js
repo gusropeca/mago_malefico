@@ -232,7 +232,7 @@ export class Fase1 extends Phaser.Scene {
 		inimigo.setTexture('inimigoAndar');
 		inimigo.play('andarInimigo', true);
 	    }
-	}
+	
             } else {
                 inimigo.setVelocity(0);
                 }
