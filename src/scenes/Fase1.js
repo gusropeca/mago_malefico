@@ -137,7 +137,8 @@ export class Fase1 extends Phaser.Scene {
 
             // Verifica se o player saiu da tela (lado direito)
             this.player.body.setCollideWorldBounds(true);
-
+            this.player.vidaMaxima = 100;
+            this.player.vida = 100;
             this.barraVida = this.add.graphics();
             this.atualizarHUD();
             
