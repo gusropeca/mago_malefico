@@ -150,14 +150,17 @@ export class Fase1 extends CenaBase {
 
   this.inimigos.children.iterate((cavaleiro) => {
     if (!cavaleiro.active) return;
-    const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, cavaleiro.x, cavaleiro.y);
+    const dist = Phaser.Math.Distance.Between(this.player.x, cavaleiro.y, cavaleiro.x, cavaleiro.y);
     if (dist < 60) {
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
       cavaleiro.setSize(62, 60);
       cavaleiro.setOffset(35, 50);
     } else if (dist < 400) {
+      oldy = this.player.y
+      this.player.y = cavaleiro.y
       this.physics.moveToObject(cavaleiro, this.player, 60);
+      this.player.y = oldy
       if (cavaleiro.anims.getName() !== 'andarCavaleiro') {
         cavaleiro.play('andarCavaleiro', true);
       }
