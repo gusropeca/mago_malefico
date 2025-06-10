@@ -156,8 +156,8 @@ export class Fase1 extends CenaBase {
 
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
-      cavaleiro.setSize(62, 60);
-      cavaleiro.setOffset(0, 50);
+      cavaleiro.setSize(60, 60);
+      cavaleiro.setOffset(0, 60);
       cavaleiro.tempoAtaque = this.time.now
       
     }
