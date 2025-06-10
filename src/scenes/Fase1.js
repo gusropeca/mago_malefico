@@ -158,13 +158,13 @@ export class Fase1 extends CenaBase {
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
       cavaleiro.setSize(70, 60);
-      cavaleiro.setOffset(virandoEsquerda ? 10 : 70, 50);
+      cavaleiro.setOffset(virandoEsquerda ? 10 : 60, 50);
       cavaleiro.tempoAtaque = this.time.now
       
     }
     else if (dist < 400 && this.time.now - cavaleiro.tempoAtaque > 2000) {
       cavaleiro.setSize(50, 60);
-      cavaleiro.setOffset(virandoEsquerda ? 35 : 70, 50);
+      cavaleiro.setOffset(virandoEsquerda ? 40 : 10, 50);
       let oldy = this.player.y
       this.player.y = cavaleiro.y
       this.physics.moveToObject(cavaleiro, this.player, 60);
@@ -174,7 +174,6 @@ export class Fase1 extends CenaBase {
       }
       cavaleiro.atacando -= 1;
       cavaleiro.setFlipX(virandoEsquerda);
-      cavaleiro.setOffset(virandoEsquerda ? 35 : 10, 50);
     } else if (this.time.now - cavaleiro.tempoAtaque > 1000){
       cavaleiro.setVelocity(0);
       cavaleiro.anims.stop();
