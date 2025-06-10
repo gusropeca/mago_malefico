@@ -154,6 +154,8 @@ export class Fase1 extends CenaBase {
     if (dist < 60) {
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
+      cavaleiro.setSize(62, 60);
+      cavaleiro.setOffset(35, 50);
     } else if (dist < 400) {
       this.physics.moveToObject(cavaleiro, this.player, 60);
       if (cavaleiro.anims.getName() !== 'andarCavaleiro') {
