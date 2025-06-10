@@ -157,7 +157,7 @@ export class Fase1 extends CenaBase {
       cavaleiro.setSize(62, 60);
       cavaleiro.setOffset(35, 50);
     } else if (dist < 400) {
-      oldy = this.player.y
+      let oldy = this.player.y
       this.player.y = cavaleiro.y
       this.physics.moveToObject(cavaleiro, this.player, 60);
       this.player.y = oldy
