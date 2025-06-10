@@ -151,13 +151,14 @@ export class Fase1 extends CenaBase {
   this.inimigos.children.iterate((cavaleiro) => {
     console.log(cavaleiro.tempoAtaque, this.time.now)
     if (!cavaleiro.active) return;
+    const virandoEsquerda = cavaleiro.x > this.player.x;
     const dist = Phaser.Math.Distance.Between(this.player.x, cavaleiro.y, cavaleiro.x, cavaleiro.y);
     if (dist < 60 && this.time.now - cavaleiro.tempoAtaque > 3000) {
 
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
       cavaleiro.setSize(70, 60);
-      cavaleiro.setOffset(10, 50);
+      cavaleiro.setOffset(virandoEsquerda ? 10 : 70, 50);
       cavaleiro.tempoAtaque = this.time.now
       
     }
@@ -170,9 +171,8 @@ export class Fase1 extends CenaBase {
         cavaleiro.play('andarCavaleiro', true);
       }
       cavaleiro.atacando -= 1;
-      const virandoEsquerda = cavaleiro.x > this.player.x;
       cavaleiro.setFlipX(virandoEsquerda);
-      cavaleiro.setOffset(virandoEsquerda ? 50 : 35, 50);
+      cavaleiro.setOffset(virandoEsquerda ? 35 : 10, 50);
     } else if (this.time.now - cavaleiro.tempoAtaque > 2000){
       cavaleiro.setVelocity(0);
       cavaleiro.anims.stop();
