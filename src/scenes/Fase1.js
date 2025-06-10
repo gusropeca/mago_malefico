@@ -127,6 +127,9 @@ export class Fase1 extends CenaBase {
     this.player.setOffset(0, 14);
     moving = true;
   }
+  else {
+    moving = false;
+  }
 
   if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.player.body.onFloor()) {
     this.player.setVelocityY(-500);
