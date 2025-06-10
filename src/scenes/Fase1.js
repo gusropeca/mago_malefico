@@ -149,6 +149,7 @@ export class Fase1 extends CenaBase {
   }
 
   this.inimigos.children.iterate((cavaleiro) => {
+    console.log(cavaleiro.tempoAtaque, this.time.now)
     if (!cavaleiro.active) return;
     const dist = Phaser.Math.Distance.Between(this.player.x, cavaleiro.y, cavaleiro.x, cavaleiro.y);
     if (dist < 60 && this.time.now - cavaleiro.tempoAtaque > 3000) {
