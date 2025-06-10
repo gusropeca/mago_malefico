@@ -64,7 +64,7 @@ export class Fase1 extends CenaBase {
     cavaleiro.setSize(42, 60);
     cavaleiro.setOffset(35, 50);
     cavaleiro.setCollideWorldBounds(true);
-    cavaleiro.vida = 100;
+    cavaleiro.vida = 100000;
     cavaleiro.tempoAtaque = 2;   
  
     
@@ -178,7 +178,7 @@ export class Fase1 extends CenaBase {
 
   if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
     this.transicionando = true;
-    this.comecarTransicaoParaFase2();
+    //this.comecarTransicaoParaFase2();
 }
 }
 
