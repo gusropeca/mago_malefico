@@ -66,7 +66,7 @@ export class Fase1 extends CenaBase {
     cavaleiro.setCollideWorldBounds(true);
     cavaleiro.vida = 100000;
     cavaleiro.tempoAtaque = 2;   
- 
+
     
 
     this.physics.add.collider(this.player, this.chao);
@@ -151,12 +151,16 @@ export class Fase1 extends CenaBase {
   this.inimigos.children.iterate((cavaleiro) => {
     if (!cavaleiro.active) return;
     const dist = Phaser.Math.Distance.Between(this.player.x, cavaleiro.y, cavaleiro.x, cavaleiro.y);
-    if (dist < 60) {
+    if (dist < 60 && now - cavaleiro.tempoAtaque > 3000) {
+
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
       cavaleiro.setSize(62, 60);
-      cavaleiro.setOffset(35, 50);
-    } else if (dist < 400) {
+      cavaleiro.setOffset(50, 50);
+      cavaleiro.tempoAtaque = this.time.now
+      
+    }
+    else if (dist < 400) {
       let oldy = this.player.y
       this.player.y = cavaleiro.y
       this.physics.moveToObject(cavaleiro, this.player, 60);
@@ -164,12 +168,14 @@ export class Fase1 extends CenaBase {
       if (cavaleiro.anims.getName() !== 'andarCavaleiro') {
         cavaleiro.play('andarCavaleiro', true);
       }
+      cavaleiro.atacando -= 1;
       const virandoEsquerda = cavaleiro.x > this.player.x;
       cavaleiro.setFlipX(virandoEsquerda);
       cavaleiro.setOffset(virandoEsquerda ? 50 : 35, 50);
     } else {
       cavaleiro.setVelocity(0);
       cavaleiro.anims.stop();
+
     }
   });
 
