@@ -89,7 +89,7 @@ export class Fase1 extends CenaBase {
 
     this.physics.add.overlap(this.player, this.inimigos, (player, cavaleiro) => {
       const now = this.time.now;
-      if (!player.invulneravel && now - cavaleiro.tempoAtaque < 2000) {
+      if (!player.invulneravel && now - cavaleiro.tempoAtaque < 1000) {
         player.vida -= 10;
         player.invulneravel = true;
         cavaleiro.tempoAtaque = now;
@@ -153,16 +153,16 @@ export class Fase1 extends CenaBase {
     if (!cavaleiro.active) return;
     const virandoEsquerda = cavaleiro.x > this.player.x;
     const dist = Phaser.Math.Distance.Between(this.player.x, cavaleiro.y, cavaleiro.x, cavaleiro.y);
-    if (dist < 60 && this.time.now - cavaleiro.tempoAtaque > 3000) {
+    if (dist < 60 && this.time.now - cavaleiro.tempoAtaque > 2000) {
 
       cavaleiro.setVelocity(0);
       cavaleiro.play('ataqueCavaleiro', true);
       cavaleiro.setSize(70, 60);
-      cavaleiro.setOffset(virandoEsquerda ? 10 : 70, 50);
+      cavaleiro.setOffset(virandoEsquerda ? 10 : 30, 50);
       cavaleiro.tempoAtaque = this.time.now
       
     }
-    else if (dist < 400 && this.time.now - cavaleiro.tempoAtaque > 3000) {
+    else if (dist < 400 && this.time.now - cavaleiro.tempoAtaque > 2000) {
       cavaleiro.setSize(35, 60);
       cavaleiro.setOffset(virandoEsquerda ? 10 : 35, 50);
       let oldy = this.player.y
@@ -175,7 +175,7 @@ export class Fase1 extends CenaBase {
       cavaleiro.atacando -= 1;
       cavaleiro.setFlipX(virandoEsquerda);
       cavaleiro.setOffset(virandoEsquerda ? 35 : 10, 50);
-    } else if (this.time.now - cavaleiro.tempoAtaque > 2000){
+    } else if (this.time.now - cavaleiro.tempoAtaque > 1000){
       cavaleiro.setVelocity(0);
       cavaleiro.anims.stop();
 
