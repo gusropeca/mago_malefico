@@ -89,7 +89,7 @@ export class Fase1 extends CenaBase {
 
     this.physics.add.overlap(this.player, this.inimigos, (player, cavaleiro) => {
       const now = this.time.now;
-      if (!player.invulneravel && now - cavaleiro.tempoAtaque > 1000) {
+      if (!player.invulneravel && now - cavaleiro.tempoAtaque < 2000) {
         player.vida -= 10;
         player.invulneravel = true;
         cavaleiro.tempoAtaque = now;
@@ -161,7 +161,7 @@ export class Fase1 extends CenaBase {
       cavaleiro.tempoAtaque = this.time.now
       
     }
-    else if (dist < 400) {
+    else if (dist < 400 && this.time.now - cavaleiro.tempoAtaque > 3000) {
       let oldy = this.player.y
       this.player.y = cavaleiro.y
       this.physics.moveToObject(cavaleiro, this.player, 60);
@@ -173,7 +173,7 @@ export class Fase1 extends CenaBase {
       const virandoEsquerda = cavaleiro.x > this.player.x;
       cavaleiro.setFlipX(virandoEsquerda);
       cavaleiro.setOffset(virandoEsquerda ? 50 : 35, 50);
-    } else {
+    } else if (this.time.now - cavaleiro.tempoAtaque > 2000){
       cavaleiro.setVelocity(0);
       cavaleiro.anims.stop();
 
