@@ -10,28 +10,25 @@ preload(){
     this.load.atlas('magoAtaque', 'assets/sprites/AtaqueDoMago.png', 'assets/sprites/AtaqueDoMago.json');
     this.load.atlas('andarCavaleiro', 'assets/sprites/AndarCavaleiro1.png', 'assets/sprites/AndarCavaleiro1.json');
     this.load.atlas('ataqueCavaleiro', 'assets/sprites/AtaqueCavaleiro1.png', 'assets/sprites/AtaqueCavaleiro1.json');
-
+    this.load.atlas('andarCavaleiro', 'assets/sprites/AndarCavaleiro1.png', 'assets/sprites/AndarCavaleiro1.json');
+    this.load.atlas('ataqueCavaleiro', 'assets/sprites/AtaqueCavaleiro1.png', 'assets/sprites/AtaqueCavaleiro1.json');
 
 
 }
 
-
-
-criarPlayer(){
-
+criarPlayer(initialVida = 100){ // ✅ Adicionado parâmetro opcional para vida inicial
     this.player = this.physics.add.sprite(100, 450, 'magoAtlas', 'AndarDoMago 0.aseprite');
     this.player.setScale(2);
     this.player.setSize(42, 50);
     this.player.setOffset(0, 14);
     this.player.vidaMaxima = 100;
-    this.player.vida = 100;
+    this.player.vida = initialVida; 
     this.player.body.setCollideWorldBounds(true);
 
 }
 
 criarFireballGroup(){
     this.fireballs = this.physics.add.group({ classType: Phaser.Physics.Arcade.Image, runChildUpdate: true });
-
 }
 
 
