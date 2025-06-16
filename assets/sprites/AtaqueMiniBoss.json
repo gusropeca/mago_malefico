@@ -1,0 +1,84 @@
+{ "frames": {
+   "AtaqueMiniBoss 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 1.aseprite": {
+    "frame": { "x": 200, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 2.aseprite": {
+    "frame": { "x": 400, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 3.aseprite": {
+    "frame": { "x": 600, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 4.aseprite": {
+    "frame": { "x": 800, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 5.aseprite": {
+    "frame": { "x": 1000, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 6.aseprite": {
+    "frame": { "x": 1200, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   },
+   "AtaqueMiniBoss 7.aseprite": {
+    "frame": { "x": 1400, "y": 0, "w": 200, "h": 160 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 200, "h": 160 },
+    "sourceSize": { "w": 200, "h": 160 },
+    "duration": 50
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.14.2-x64",
+  "image": "AtaqueMiniBoss.png",
+  "format": "RGBA8888",
+  "size": { "w": 1600, "h": 160 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 3", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
