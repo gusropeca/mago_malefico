@@ -11,7 +11,7 @@ preload() {
     this.load.image('Floresta2', 'assets/Floresta2.png');
     this.load.image('FlorestaChao', 'assets/FlorestaChao.png');
     this.load.atlas('andarMiniBoss', 'assets/sprites/AndarMiniBoss.png', 'assets/sprites/AndarMiniBoss.json');
-    this.load.atlas('ataqueMiniBoss', 'assets/sprites/AtaqueMiniboss.png', 'assets/sprites/AtaqueMiniBoss.json');
+    this.load.atlas('ataqueMiniBoss', 'assets/sprites/AtaqueMiniBoss.png', 'assets/sprites/AtaqueMiniBoss.json');
     this.load.image('PocaoVida', 'assets/PocaoVida.png');
 
 }
