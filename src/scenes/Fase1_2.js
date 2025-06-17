@@ -43,7 +43,7 @@ create(data) {
     this.anims.create({
       key: 'ataqueMiniBoss',
       frames: this.anims.generateFrameNames('ataqueMiniBoss', {
-        start: 0,
+        start: 1,
         end: 7,
         prefix: 'AtaqueMiniBoss ',
         suffix: '.aseprite'
@@ -103,13 +103,13 @@ create(data) {
     });
 
 
-  this.physics.add.overlap(this.player, this.inimigos, (player, miniboss) => {
+  this.physics.add.overlap(this.player, this.inimigos, (player, miniBoss) => {
     const now = this.time.now;
-    if (!player.invulneravel && now - miniboss.tempoAtaque > 1000) {
+    if (!player.invulneravel && now - miniBoss.tempoAtaque > 1000) {
     player.vida -= 20;
     player.invulneravel = true;
-    miniboss.tempoAtaque = now;
-    miniboss.play('ataqueMiniBoss', true); 
+    miniBoss.tempoAtaque = now;
+    miniBoss.play('ataqueMiniBoss', true); 
     this.time.delayedCall(1000, () => (player.invulneravel = false));
     }
 });
