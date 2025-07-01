@@ -5,11 +5,11 @@ export class Cutscene1 extends Phaser.Scene {
 
   preload() {
     // Carrega as imagens da cutscene
-    this.load.image('scene1', 'assets/cutscenes/Cena1.png');
-    this.load.image('scene2', 'assets/cutscenes/Cena2.png');
-    this.load.image('scene3', 'assets/cutscenes/Cena3.png');
-    this.load.image('scene4', 'assets/cutscenes/Cena4.png');
-    this.load.image('scene5', 'assets/cutscenes/Cena5.png');
+    this.load.image('scene1', 'assets/Cutscenes/Cena1.png');
+    this.load.image('scene2', 'assets/Cutscenes/Cena2.png');
+    this.load.image('scene3', 'assets/Cutscenes/Cena3.png');
+    this.load.image('scene4', 'assets/Cutscenes/Cena4.png');
+    this.load.image('scene5', 'assets/Cutscenes/Cena5.png');
   }
 
   create() {
