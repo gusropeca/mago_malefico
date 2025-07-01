@@ -46,7 +46,7 @@ export class Start extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
             this.background.destroy();
-            this.scene.start('Fase1'); // Inicia a cutscene
+            this.scene.start('Cutscene1'); // Inicia a cutscene
         }
 
     }
