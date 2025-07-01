@@ -1,7 +1,7 @@
     import { Start } from './scenes/Start.js';
     import { TelaMorte } from './scenes/TelaMorte.js';
-    import { Cutscene1 } from './scenes/Cutscene1.js'
-    import { Cutscene2 } from './scenes/Cutscene2.js'
+    import { Cutscene1 } from './scenes/Cutscene1.js';
+    import { Cutscene2 } from './scenes/Cutscene2.js';
     import { Fase1 } from './scenes/Fase1.js';
     import { Fase1_1 } from './scenes/Fase1_1.js';
     import { Fase1_2 } from './scenes/Fase1_2.js';
