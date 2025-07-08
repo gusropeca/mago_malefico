@@ -11,8 +11,8 @@ preload() {
     this.load.image('Floresta2', 'assets/Floresta2.png');
     this.load.image('FlorestaChao', 'assets/FlorestaChao.png');
     this.load.atlas('andarMiniBoss', 'assets/sprites/AndarMiniBoss.png', 'assets/sprites/AndarMiniBoss.json');
-    this.load.atlas('ataqueMiniBoss', 'assets/sprites/AtaqueMiniBoss.png', 'assets/sprites/AtaqueMiniBoss.json');
-    this.load.image('PocaoVida', 'assets/PocaoVida.png');
+    this.load.atlas('ataqueMiniBoss', 'assets/sprites/AtaqueMiniboss.png', 'assets/sprites/AtaqueMiniBoss.json');
+    this.load.image('Chave', 'assets/Chave.png');
 
 }
 
@@ -43,7 +43,7 @@ create(data) {
     this.anims.create({
       key: 'ataqueMiniBoss',
       frames: this.anims.generateFrameNames('ataqueMiniBoss', {
-        start: 1,
+        start: 0,
         end: 7,
         prefix: 'AtaqueMiniBoss ',
         suffix: '.aseprite'
@@ -56,13 +56,13 @@ create(data) {
     this.pocoes = this.physics.add.group(); 
 
 
-    const miniBoss = this.physics.add.sprite(600, 500, 'andarMiniBoss', 'AndarMiniBoss 0.aseprite');
+    const miniBoss = this.physics.add.sprite(500, 500, 'andarMiniBoss', 'AndarMiniBoss 0.aseprite');
     this.inimigos.add(miniBoss);
     miniBoss.setScale(1.5); 
     miniBoss.setSize(100, 110);
     miniBoss.setOffset(60, 50);
     miniBoss.setCollideWorldBounds(true);
-    miniBoss.vida = 400;
+    miniBoss.vida = 300;
     miniBoss.tempoAtaque = 2;   
     miniBoss.dropsPotion = true;
 
@@ -80,10 +80,13 @@ create(data) {
     this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, miniBoss) => {
       fireball.disableBody(true, true);
       miniBoss.vida -= 20;
+      miniBoss.setTint(0xff0000);
+      this.time.delayedCall(100, () => miniBoss.clearTint());
+
       if (miniBoss.vida <= 0) {
        
         if (miniBoss.dropsPotion) {
-            const potion = this.pocoes.create(miniBoss.x, miniBoss.y, 'PocaoVida');
+            const potion = this.pocoes.create(miniBoss.x, miniBoss.y, 'Chave');
             
             potion.setOrigin(0.5, 0.5); 
             potion.body.setAllowGravity(true); 
@@ -103,13 +106,13 @@ create(data) {
     });
 
 
-  this.physics.add.overlap(this.player, this.inimigos, (player, miniBoss) => {
+  this.physics.add.overlap(this.player, this.inimigos, (player, miniboss) => {
     const now = this.time.now;
-    if (!player.invulneravel && now - miniBoss.tempoAtaque > 1000) {
+    if (!player.invulneravel && now - miniboss.tempoAtaque > 1000) {
     player.vida -= 20;
     player.invulneravel = true;
-    miniBoss.tempoAtaque = now;
-    miniBoss.play('ataqueMiniBoss', true); 
+    miniboss.tempoAtaque = now;
+    miniboss.play('ataqueMiniBoss', true); 
     this.time.delayedCall(1000, () => (player.invulneravel = false));
     }
 });
@@ -181,7 +184,7 @@ create(data) {
         miniBoss.tempoAtaque = this.time.now
         
         }
-        else if (dist < 400 && this.time.now - miniBoss.tempoAtaque > 2000) {
+        else if (dist < 450 && this.time.now - miniBoss.tempoAtaque > 2000) {
         miniBoss.setSize(100, 110);
         miniBoss.setOffset(virandoEsquerda ? 40 : 80, 50);
         let oldy = this.player.y
@@ -213,13 +216,15 @@ create(data) {
 
 
   comecarTransicaoParaFase2() {
+  this.sound.stopByKey('TrilhaSonoraFase1');
   this.player.setVelocity(0, 0);
   this.cursors.left.enabled = false;
   this.cursors.right.enabled = false;
   this.spaceKey.enabled = false;
+  
 
   this.cameras.main.once('camerafadeoutcomplete', () => {
-    this.scene.start('Fase2', {
+    this.scene.start('Cutscene2', {
       vida: this.player.vida
     });
   });
