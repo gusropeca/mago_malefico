@@ -4,18 +4,21 @@ export class Cutscene2 extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('cutsceneBg', 'assets/Cutscenes/EntradaCastelo.png'); // sua imagem de cena
+    this.load.image('cutsceneBg', 'assets/Cutscenes/EntradaCastelo.png'); 
+    this.load.audio('MusicaInicial', 'assets/music/MusicaInicio.mp3')
   }
 
-  create() {
-    // Mostra a imagem da cutscene
+  create(data) {
     this.add.image(400, 300, 'cutsceneBg').setOrigin(0.5);
 
-    // Texto da legenda
-    this.legenda = this.add.text(400, 550, 'Há muito tempo, na floresta perdida...', {
+    if (!this.sound.get('MusicaInicial')?.isPlaying) {
+            this.sound.add('MusicaInicial', { loop: true, volume: 0.5 }).play();
+    }
+
+    this.legenda = this.add.text(400, 525, 'O Mago finalmente chega aos portões imponentes do castelo, que foram abertos com a chave.', {
       fontSize: '24px',
       color: '#ffffff',
-      fontFamily: 'Arial',
+      fontFamily: 'NewTimesRoman',
       wordWrap: { width: 700, useAdvancedWrap: true },
       align: 'center'
     }).setOrigin(0.5);
@@ -24,21 +27,17 @@ export class Cutscene2 extends Phaser.Scene {
     this.add.text(400, 580, 'Pressione ESPAÇO para continuar', {
       fontSize: '18px',
       color: '#cccccc',
-      fontFamily: 'Arial'
+      fontFamily: 'NewTimesRoman'
     }).setOrigin(0.5);
 
-    // Aguarda tecla para prosseguir
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-    // Alternativamente: avance após alguns segundos
-    // this.time.delayedCall(5000, () => {
-    //   this.scene.start('Fase1');
-    // });
   }
 
   update() {
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
-      this.scene.start('Cutscene3');
+      this.sound.stopByKey('MusicaInicial');
+      this.scene.start('Fase2');
     }
   }
 }
