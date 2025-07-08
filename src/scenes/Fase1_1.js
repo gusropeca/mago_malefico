@@ -32,9 +32,9 @@ create(data) {
     this.pocoes = this.physics.add.group(); 
   
     this.cavaleiros = []; 
-    this.cavaleiros.push(new Cavaleiro(this, 600, 500, this.inimigos, false));
-    this.cavaleiros.push(new Cavaleiro(this, 700, 500, this.inimigos, false));
-    this.cavaleiros.push(new Cavaleiro(this, 800, 500, this.inimigos, true));
+    this.cavaleiros.push(new Cavaleiro(this, 400, 500, this.inimigos, false));
+    this.cavaleiros.push(new Cavaleiro(this, 500, 500, this.inimigos, false));
+    this.cavaleiros.push(new Cavaleiro(this, 600, 500, this.inimigos, true));
 
     this.physics.add.collider(this.player, this.chao);
     this.physics.add.collider(this.inimigos, this.chao); 
@@ -51,6 +51,9 @@ create(data) {
     this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, cavaleiro) => {
       fireball.disableBody(true, true);
       cavaleiro.vida -= 20;
+      cavaleiro.setTint(0xff0000);
+      this.time.delayedCall(100, () => cavaleiro.clearTint());
+      
       if (cavaleiro.vida <= 0) {
        
         if (cavaleiro.dropsPotion) {
