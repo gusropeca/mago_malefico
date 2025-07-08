@@ -25,7 +25,7 @@ export class Fase1 extends CenaBase {
     this.tweens.add({
     targets: fase1,
     alpha: 0,
-    duration: 1000, /
+    duration: 1000,
     ease: 'Linear',
     onComplete: () => {
     
