@@ -174,7 +174,7 @@ export class Fase1_2 extends CenaBase {
             if (dist < 80 && this.time.now > miniBoss.tempoAtaque) {
                 miniBoss.setVelocity(0);
                 miniBoss.play('ataqueMiniBoss', true);
-                miniBoss.tempoAtaque = this.time.now + 2500; /
+                miniBoss.tempoAtaque = this.time.now + 2500; 
             } 
             else if (dist < 450) {
                 this.physics.moveToObject(miniBoss, this.player, 60);
