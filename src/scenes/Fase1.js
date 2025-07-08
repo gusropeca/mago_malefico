@@ -1,40 +1,50 @@
 import { CenaBase } from './CenaBase.js';
 import { Cavaleiro } from './Cavaleiro.js'; 
 
-export class Fase1_1 extends CenaBase {
-    constructor() {
-    super('Fase1_1');
+export class Fase1 extends CenaBase {
+  constructor() {
+    super('Fase1');
   }
 
-preload() {
-
+  preload() {
     super.preload();
-    this.load.image('Floresta1', 'assets/floresta1.png');
-    this.load.image('FlorestaChao', 'assets/florestaChao.png');
+    this.load.image('Floresta', 'assets/Floresta.png');
+    this.load.image('FlorestaChao', 'assets/florestachao.png');
     this.load.image('PocaoVida', 'assets/PocaoVida.png');
+  } 
 
+  create() {
+  
+    this.chao = this.physics.add.staticSprite(400, 300, 'FlorestaChao');
+    this.background = this.add.tileSprite(400, 300, 800, 600, 'Floresta');     
+    const fase1 = this.add.image(400, 100, 'FlorestaTitulo');
+    fase1.setScale(0.3);
+
+
+    this.time.delayedCall(2000, () => {
+    this.tweens.add({
+    targets: fase1,
+    alpha: 0,
+    duration: 1000, /
+    ease: 'Linear',
+    onComplete: () => {
     
-}
+    }
+    });
+    });
 
-
-create(data) { 
-    
-    this.cameras.main.fadeIn(1000, 0, 0, 0);
-    this.chao = this.physics.add.staticSprite(400, 300, 'FlorestaChao')
-    this.background = this.add.tileSprite(400, 300, 800, 600, 'Floresta1');
-         
     this.criarAnims();
-    this.criarPlayer(data ? data.vida : undefined); 
+    this.criarPlayer();
     this.criarFireballGroup();
     this.configurarControles();
 
+
     this.inimigos = this.physics.add.group();
     this.pocoes = this.physics.add.group(); 
-  
+
     this.cavaleiros = []; 
     this.cavaleiros.push(new Cavaleiro(this, 400, 500, this.inimigos, false));
-    this.cavaleiros.push(new Cavaleiro(this, 500, 500, this.inimigos, false));
-    this.cavaleiros.push(new Cavaleiro(this, 600, 500, this.inimigos, true));
+    this.cavaleiros.push(new Cavaleiro(this, 500, 500, this.inimigos, true));
 
     this.physics.add.collider(this.player, this.chao);
     this.physics.add.collider(this.inimigos, this.chao); 
@@ -53,7 +63,7 @@ create(data) {
       cavaleiro.vida -= 20;
       cavaleiro.setTint(0xff0000);
       this.time.delayedCall(100, () => cavaleiro.clearTint());
-      
+
       if (cavaleiro.vida <= 0) {
        
         if (cavaleiro.dropsPotion) {
@@ -100,6 +110,7 @@ create(data) {
       this.morreu = true; 
       this.scene.start('TelaMorte');
   }
+
     const speed = 160;
     let moving = false;
 
@@ -154,23 +165,20 @@ create(data) {
     }
   }
 
-
   comecarTransicaoParaFase2() {
-  this.player.setVelocity(0, 0);
-  this.cursors.left.enabled = false;
-  this.cursors.right.enabled = false;
-  this.spaceKey.enabled = false;
+    this.player.setVelocity(0, 0);
+    this.cursors.left.enabled = false;
+    this.cursors.right.enabled = false;
+    this.spaceKey.enabled = false;
 
-  this.cameras.main.once('camerafadeoutcomplete', () => {
-    // Certifique-se que o nome da próxima cena está correto aqui
-    this.scene.start('Fase1_2', { // Pode ser Fase1_2 ou a próxima fase real
-      vida: this.player.vida
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      this.scene.start('Fase1_1', {
+        vida: this.player.vida // A vida do player é passada aqui
+      });
     });
-  });
 
-  this.cameras.main.fadeOut(500); // iniciar fade
-}
-
+    this.cameras.main.fadeOut(500); // iniciar fade
+  }
 
   atualizarHUD() {
     this.barraVida.clear();
