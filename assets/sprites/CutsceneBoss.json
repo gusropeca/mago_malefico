@@ -1,0 +1,155 @@
+{ "frames": [
+   {
+    "filename": "NovaCutscene 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 1.aseprite",
+    "frame": { "x": 800, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 2.aseprite",
+    "frame": { "x": 1600, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 3.aseprite",
+    "frame": { "x": 2400, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 4.aseprite",
+    "frame": { "x": 3200, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 5.aseprite",
+    "frame": { "x": 4000, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 6.aseprite",
+    "frame": { "x": 4800, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 7.aseprite",
+    "frame": { "x": 5600, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 8.aseprite",
+    "frame": { "x": 6400, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 9.aseprite",
+    "frame": { "x": 7200, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 10.aseprite",
+    "frame": { "x": 8000, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 11.aseprite",
+    "frame": { "x": 8800, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 12.aseprite",
+    "frame": { "x": 9600, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 13.aseprite",
+    "frame": { "x": 10400, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   },
+   {
+    "filename": "NovaCutscene 14.aseprite",
+    "frame": { "x": 11200, "y": 0, "w": 800, "h": 600 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 800, "h": 600 },
+    "sourceSize": { "w": 800, "h": 600 },
+    "duration": 300
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.14.3-x64",
+  "image": "CutsceneBoss.png",
+  "format": "RGBA8888",
+  "size": { "w": 12000, "h": 600 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Fundo", "opacity": 255, "blendMode": "normal" },
+   { "name": "Rei", "opacity": 255, "blendMode": "normal" },
+   { "name": "PODEEEEEEEEEEEEER", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
