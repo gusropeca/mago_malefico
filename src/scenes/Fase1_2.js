@@ -107,6 +107,8 @@ create(data) {
 
 
   this.physics.add.overlap(this.player, this.inimigos, (player, miniboss) => {
+    if (!miniboss.active) return;
+      
     const now = this.time.now;
     if (!player.invulneravel && now - miniboss.tempoAtaque > 1000) {
     player.vida -= 20;
