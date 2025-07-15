@@ -39,7 +39,6 @@ update() {
         this.player.play('andarMago', true);
     } else {
         this.player.setVelocityX(0);
-        this.player.anims.stop();
     }
 }    
 criarPlayer(initialVida = 100){
