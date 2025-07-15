@@ -17,32 +17,32 @@ preload(){
 }
 
 update() {
-    // Se o jogador estiver atacando, ele não pode se mover nem mudar de animação.
+    // Se o jogador estiver atacando, ele para e não pode se mover.
     if (this.estaAtacando) {
-        return; // Sai da função update para não processar o movimento
+        this.player.setVelocityX(0); // ✅ MELHORIA: Impede que o jogador deslize
+        return; 
+    }
+
+    // Verifica o input de ataque primeiro
+    if (Phaser.Input.Keyboard.JustDown(this.attackKey)) {
+        this.atacar();
+        return; // Sai para não processar movimento no mesmo frame do ataque
     }
 
     // Verifica o input de movimento
     if (this.cursors.left.isDown) {
         this.player.setVelocityX(-160);
-        this.player.flipX = true; // Vira o sprite para a esquerda
-        this.player.play('andarMago', true); // O 'true' evita reiniciar a animação a cada frame
+        this.player.flipX = true;
+        this.player.play('andarMago', true);
     } else if (this.cursors.right.isDown) {
         this.player.setVelocityX(160);
-        this.player.flipX = false; // Vira o sprite para a direita
+        this.player.flipX = false;
         this.player.play('andarMago', true);
     } else {
-        // Se nenhuma tecla de movimento estiver pressionada
         this.player.setVelocityX(0);
-        this.player.anims.stop(); // Para a animação (ou você pode tocar uma animação 'parado')
+        this.player.anims.stop();
     }
-
-    // Verifica o input de ataque
-    if (Phaser.Input.Keyboard.JustDown(this.attackKey) && !this.estaAtacando) {
-        this.atacar();
-    }
-}
-    
+}    
 criarPlayer(initialVida = 100){ // ✅ Adicionado parâmetro opcional para vida inicial
     this.player = this.physics.add.sprite(100, 450, 'magoAtlas', 'AndarDoMago 0.aseprite');
     this.player.setScale(2);
@@ -111,9 +111,8 @@ atacar() {
         fireball.body.onWorldBounds = true;
     }
 
-    this.player.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+    // ✅ CORREÇÃO: Escute a conclusão da animação específica 'ataqueMago'
+    this.player.once('animationcomplete-ataqueMago', () => {
         this.estaAtacando = false;
     });
-  return;
-}
-}
+}}
