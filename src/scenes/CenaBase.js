@@ -98,7 +98,7 @@ atacar() {
 
     this.estaAtacando = true;
     this.player.play('ataqueMago', true);
-    this.player.setOffset(10, 25);
+    this.player.setOffset(10, 35);
 
     const fireball = this.fireballs.get();
     if (fireball) {
