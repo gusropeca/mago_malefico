@@ -12,8 +12,7 @@ preload(){
     this.load.atlas('ataqueCavaleiro', 'assets/sprites/AtaqueCavaleiro1.png', 'assets/sprites/AtaqueCavaleiro1.json');
     this.load.atlas('andarCavaleiro', 'assets/sprites/AndarCavaleiro1.png', 'assets/sprites/AndarCavaleiro1.json');
     this.load.atlas('ataqueCavaleiro', 'assets/sprites/AtaqueCavaleiro1.png', 'assets/sprites/AtaqueCavaleiro1.json');
-
-
+    this.load.atlas('animacaoDeParado', 'assets/sprites/AndarDoMago.png', 'assets/sprites/AtaqueCavaleiro1.json');
 }
 
 update() {
@@ -39,6 +38,7 @@ update() {
         this.player.play('andarMago', true);
     } else {
         this.player.setVelocityX(0);
+        this.player.play('animacaoDeParado', true)
     }
 }    
 criarPlayer(initialVida = 100){
@@ -83,6 +83,17 @@ criarAnims(){
       repeat: 0
     });
 
+    this.anims.create({
+        key: 'paradoMago',
+        frames: this.anims.generateFrameNames('magoParado', {
+            start: 0,
+            end: 0,
+            prefix: 'AndarDoMago ',
+            suffix: '.aseprite'
+        }),
+        frameRate: 1, 
+        repeat: -1 
+    });
 }
 
 configurarControles(){
@@ -97,7 +108,7 @@ atacar() {
 
     this.estaAtacando = true;
     this.player.play('ataqueMago', true);
-    this.player.setOffset(10, 35);
+    this.player.setOffset(10, 25);
 
     const fireball = this.fireballs.get();
     if (fireball) {
