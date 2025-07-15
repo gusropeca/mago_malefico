@@ -19,7 +19,6 @@ preload(){
 update() {
     // Se o jogador estiver atacando, ele para e não pode se mover.
     if (this.estaAtacando) {
-        this.player.setVelocityX(0); // ✅ MELHORIA: Impede que o jogador deslize
         return; 
     }
 
@@ -43,7 +42,7 @@ update() {
         this.player.anims.stop();
     }
 }    
-criarPlayer(initialVida = 100){ // ✅ Adicionado parâmetro opcional para vida inicial
+criarPlayer(initialVida = 100){
     this.player = this.physics.add.sprite(100, 450, 'magoAtlas', 'AndarDoMago 0.aseprite');
     this.player.setScale(2);
     this.player.setSize(42, 50);
@@ -111,7 +110,6 @@ atacar() {
         fireball.body.onWorldBounds = true;
     }
 
-    // ✅ CORREÇÃO: Escute a conclusão da animação específica 'ataqueMago'
     this.player.once('animationcomplete-ataqueMago', () => {
         this.estaAtacando = false;
     });
