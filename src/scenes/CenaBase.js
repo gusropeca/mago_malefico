@@ -38,7 +38,7 @@ update() {
         this.player.play('andarMago', true);
     } else {
         this.player.setVelocityX(0);
-        this.player.play('animacaoDeParado', true)
+        this.player.play('paradoMago', true)
     }
 }    
 criarPlayer(initialVida = 100){
@@ -85,7 +85,7 @@ criarAnims(){
 
     this.anims.create({
         key: 'paradoMago',
-        frames: this.anims.generateFrameNames('magoParado', {
+        frames: this.anims.generateFrameNames('animacaoDeParado', {
             start: 0,
             end: 0,
             prefix: 'AndarDoMago ',
