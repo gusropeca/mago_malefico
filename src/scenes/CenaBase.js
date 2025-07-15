@@ -16,6 +16,35 @@ preload(){
 
 }
 
+update() {
+    // Se o jogador estiver atacando, ele não pode se mover nem mudar de animação.
+    if (this.estaAtacando) {
+        // Para o jogador não deslizar enquanto ataca
+        this.player.setVelocityX(0); 
+        return; // Sai da função update para não processar o movimento
+    }
+
+    // Verifica o input de movimento
+    if (this.cursors.left.isDown) {
+        this.player.setVelocityX(-160);
+        this.player.flipX = true; // Vira o sprite para a esquerda
+        this.player.play('andarMago', true); // O 'true' evita reiniciar a animação a cada frame
+    } else if (this.cursors.right.isDown) {
+        this.player.setVelocityX(160);
+        this.player.flipX = false; // Vira o sprite para a direita
+        this.player.play('andarMago', true);
+    } else {
+        // Se nenhuma tecla de movimento estiver pressionada
+        this.player.setVelocityX(0);
+        this.player.anims.stop(); // Para a animação (ou você pode tocar uma animação 'parado')
+    }
+
+    // Verifica o input de ataque
+    if (Phaser.Input.Keyboard.JustDown(this.attackKey) && !this.estaAtacando) {
+        this.atacar();
+    }
+}
+    
 criarPlayer(initialVida = 100){ // ✅ Adicionado parâmetro opcional para vida inicial
     this.player = this.physics.add.sprite(100, 450, 'magoAtlas', 'AndarDoMago 0.aseprite');
     this.player.setScale(2);
@@ -67,25 +96,27 @@ configurarControles(){
 }
 
 
-atacar(){
+atacar() {
     if (this.estaAtacando) return;
-    this.player.setOffset(10, 25);
+
     this.estaAtacando = true;
+    this.player.setVelocityX(0); // Garante que o jogador pare ao atacar
     this.player.play('ataqueMago', true);
+    this.player.setOffset(10, 25);
 
     const fireball = this.fireballs.get();
     if (fireball) {
-      fireball.setTexture('fireball');
-      fireball.enableBody(true, this.player.x, this.player.y - (-10), true, true);
-      fireball.setVelocityX(this.player.flipX ? -400 : 400);
-      fireball.body.setAllowGravity(false);
-      fireball.setCollideWorldBounds(true);
-      fireball.body.onWorldBounds = true;
+        fireball.setTexture('fireball');
+        fireball.enableBody(true, this.player.x, this.player.y - (-10), true, true);
+        fireball.setVelocityX(this.player.flipX ? -400 : 400);
+        fireball.body.setAllowGravity(false);
+        fireball.setCollideWorldBounds(true);
+        fireball.body.onWorldBounds = true;
     }
 
     this.player.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-      this.estaAtacando = false;
+        this.estaAtacando = false;
+        // Não precisa mais reiniciar a animação aqui, o `update` cuidará disso no próximo frame.
     });
 }
-
 }
