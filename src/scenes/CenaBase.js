@@ -19,8 +19,6 @@ preload(){
 update() {
     // Se o jogador estiver atacando, ele não pode se mover nem mudar de animação.
     if (this.estaAtacando) {
-        // Para o jogador não deslizar enquanto ataca
-        this.player.setVelocityX(0); 
         return; // Sai da função update para não processar o movimento
     }
 
@@ -100,7 +98,6 @@ atacar() {
     if (this.estaAtacando) return;
 
     this.estaAtacando = true;
-    this.player.setVelocityX(0); // Garante que o jogador pare ao atacar
     this.player.play('ataqueMago', true);
     this.player.setOffset(10, 25);
 
@@ -116,7 +113,7 @@ atacar() {
 
     this.player.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
         this.estaAtacando = false;
-        // Não precisa mais reiniciar a animação aqui, o `update` cuidará disso no próximo frame.
     });
+  return;
 }
 }
