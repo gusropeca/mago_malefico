@@ -31,11 +31,11 @@ update() {
     if (this.cursors.left.isDown) {
         this.player.setVelocityX(-160);
         this.player.flipX = true;
-        this.player.play('andarMago', true);
+        this.player.play('andarMago', false);
     } else if (this.cursors.right.isDown) {
         this.player.setVelocityX(160);
         this.player.flipX = false;
-        this.player.play('andarMago', true);
+        this.player.play('andarMago', false);
     } else {
         this.player.setVelocityX(0);
         this.player.play('paradoMago', true)
