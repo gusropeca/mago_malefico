@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "NovaCutscene 0.aseprite",
+    "filename": "CutsceneBoss 0.aseprite",
     "frame": { "x": 0, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 1.aseprite",
+    "filename": "CutsceneBoss 1.aseprite",
     "frame": { "x": 800, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -18,7 +18,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 2.aseprite",
+    "filename": "CutsceneBoss 2.aseprite",
     "frame": { "x": 1600, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -27,7 +27,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 3.aseprite",
+    "filename": "CutsceneBoss 3.aseprite",
     "frame": { "x": 2400, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -36,7 +36,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 4.aseprite",
+    "filename": "CutsceneBoss 4.aseprite",
     "frame": { "x": 3200, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -45,7 +45,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 5.aseprite",
+    "filename": "CutsceneBoss 5.aseprite",
     "frame": { "x": 4000, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -54,7 +54,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 6.aseprite",
+    "filename": "CutsceneBoss 6.aseprite",
     "frame": { "x": 4800, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +63,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 7.aseprite",
+    "filename": "CutsceneBoss 7.aseprite",
     "frame": { "x": 5600, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -72,7 +72,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 8.aseprite",
+    "filename": "CutsceneBoss 8.aseprite",
     "frame": { "x": 6400, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 9.aseprite",
+    "filename": "CutsceneBoss 9.aseprite",
     "frame": { "x": 7200, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -90,7 +90,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 10.aseprite",
+    "filename": "CutsceneBoss 10.aseprite",
     "frame": { "x": 8000, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -99,7 +99,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 11.aseprite",
+    "filename": "CutsceneBoss 11.aseprite",
     "frame": { "x": 8800, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -108,7 +108,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 12.aseprite",
+    "filename": "CutsceneBoss 12.aseprite",
     "frame": { "x": 9600, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -117,7 +117,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 13.aseprite",
+    "filename": "CutsceneBoss 13.aseprite",
     "frame": { "x": 10400, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
@@ -126,7 +126,7 @@
     "duration": 300
    },
    {
-    "filename": "NovaCutscene 14.aseprite",
+    "filename": "CutsceneBoss 14.aseprite",
     "frame": { "x": 11200, "y": 0, "w": 800, "h": 600 },
     "rotated": false,
     "trimmed": false,
