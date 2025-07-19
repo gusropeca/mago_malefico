@@ -11,14 +11,12 @@ export class Fase2_3 extends CenaBase {
         this.load.image('CasteloChao', 'assets/CasteloChao.png');
         this.load.image('PocaoVida', 'assets/PocaoVida.png');
         
-        // Assets do Chefe
         this.load.atlas('andarBossPequeno', 'assets/sprites/AndarBossPequeno.png', 'assets/sprites/AndarBossPequeno.json');
         this.load.atlas('ataqueBossPequeno', 'assets/sprites/AtaqueBossPequeno.png', 'assets/sprites/AtaqueBossPequeno.json');
         this.load.image('purpleFireball', 'assets/PurpleFireball.png');
         this.load.atlas('andarBoss', 'assets/sprites/AndarBoss.png', 'assets/sprites/AndarBoss.json');
         this.load.atlas('ataqueBoss', 'assets/sprites/AtaqueBoss.png', 'assets/sprites/AtaqueBoss.json');
 
-        // Assets da Cutscene
         this.load.atlas('cutsceneTransformacao', 'assets/Cutscenes/CutsceneBoss.png', 'assets/sprites/CutsceneBoss.json');
 
         this.load.audio('TrilhaSonoraBoss', 'assets/music/MusicaBoss.mp3');
@@ -119,7 +117,7 @@ export class Fase2_3 extends CenaBase {
             frames: this.anims.generateFrameNames('cutsceneTransformacao', { 
                 prefix: 'CutsceneBoss ', 
                 start: 0, 
-                end: 13,
+                end: 14,
                 suffix: '.aseprite'
             }),
             frameRate: 2.5, 
@@ -140,7 +138,7 @@ export class Fase2_3 extends CenaBase {
             repeat: 0,
         });
         
-        // Animações Fase 2
+
         this.anims.create({
             key: 'andarBossGrande',
             frames: this.anims.generateFrameNames('andarBoss', { start: 0, end: 2, prefix: 'AndarBoss ', suffix: '.aseprite' }),
@@ -167,7 +165,6 @@ export class Fase2_3 extends CenaBase {
         const pos = { x: this.bossPequeno.x, y: this.bossPequeno.y };
         this.bossPequeno.destroy();
 
-        // --- CORREÇÃO: Cria a cutscene no centro do ecrã e com a escala correta ---
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
         const cutsceneSprite = this.add.sprite(centerX, centerY, 'cutsceneTransformacao');
