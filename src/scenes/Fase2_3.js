@@ -117,7 +117,7 @@ export class Fase2_3 extends CenaBase {
         this.anims.create({
             key: 'playTransformacao',
             frames: this.anims.generateFrameNames('cutsceneTransformacao', { 
-                prefix: 'CutsceneBoss ', 
+                prefix: 'CutsceneBoss', 
                 start: 0, 
                 end: 13,
                 suffix: '.aseprite'
