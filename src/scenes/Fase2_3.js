@@ -330,12 +330,13 @@ export class Fase2_3 extends CenaBase {
             this.atacar();
         }
 
-        if (!this.estaAtacando) {
+         if (!this.estaAtacando) {
             if (moving) {
                 this.player.play('andarMago', true);
             } else {
                 this.player.anims.stop();
-                this.player.setFrame('AndarDoMago 0.aseprite');
+            this.player.setTexture('magoAtlas', 'AndarDoMago 0.aseprite');
+            this.player.setOffset(0, 14);
             }
         }
     }
