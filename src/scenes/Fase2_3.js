@@ -17,7 +17,7 @@ export class Fase2_3 extends CenaBase {
         this.load.atlas('andarBoss', 'assets/sprites/AndarBoss.png', 'assets/sprites/AndarBoss.json');
         this.load.atlas('ataqueBoss', 'assets/sprites/AtaqueBoss.png', 'assets/sprites/AtaqueBoss.json');
 
-        this.load.atlas('cutsceneTransformacao', 'assets/Cutscenes/CutsceneBoss.png', 'assets/sprites/CutsceneBoss.json');
+        this.load.atlas('cutsceneTransformacao', 'assets/sprites/CutsceneBoss.png', 'assets/sprites/CutsceneBoss.json');
 
         this.load.audio('TrilhaSonoraBoss', 'assets/music/MusicaBoss.mp3');
     }
