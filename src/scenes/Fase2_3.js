@@ -244,7 +244,7 @@ export class Fase2_3 extends CenaBase {
 
         if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
             this.transicionando = true;
-            this.comecarTransicaoParaProximaFase(); 
+            this.comecarTransicaoParaFase2(); 
         }
     }
     
