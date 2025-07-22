@@ -216,7 +216,9 @@ export class Fase2_3 extends CenaBase {
             this.player.invulneravel = false;
         });
     }
-
+    
+disponiveis = "";
+    
     update(time) {
         if (this.gameState === 'CUTSCENE') {
             return;
@@ -243,6 +245,7 @@ export class Fase2_3 extends CenaBase {
         const chegouFim = this.player.x >= this.cameras.main.width - this.player.width;
 
         if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
+            disponiveis = fetchData();
             this.transicionando = true;
             this.comecarTransicaoParaFase2(); 
         }
@@ -362,4 +365,32 @@ export class Fase2_3 extends CenaBase {
         this.barraVida.fillStyle(0xff0000);
         this.barraVida.fillRect(22, 22, Math.max(0, this.player.vida), 10);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    async function fetchData() {
+        try {
+            const url = 'http://0.0.0.0:5678/webhook-test/buscar-princesas';
+            const response = await fetch(url);
+    
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            
+            // 3. Retorna os dados em caso de sucesso
+            return data; 
+    
+        } catch (error) {
+            console.error('Falha ao buscar dados:', error);
+            
+            // 4. Retorna null em caso de erro
+            return null; 
+        }
+    }
+
+
+
+    
 }
