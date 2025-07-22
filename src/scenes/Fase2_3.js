@@ -245,6 +245,22 @@ disponiveis = "";
         const chegouFim = this.player.x >= this.cameras.main.width - this.player.width;
 
         if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
+
+            this.fetchData().then(dadosRecebidos => {
+                // ESTE BLOCO DE CÓDIGO SÓ EXECUTA QUANDO OS DADOS CHEGAM
+        
+                if (dadosRecebidos) {
+                    console.log("Dados recebidos com sucesso!", dadosRecebidos);
+        
+                    // Agora sim, você pode atribuir a uma propriedade da cena ou usar diretamente
+                    this.disponiveis = dadosRecebidos;
+                    
+                    // Exemplo: Chamar uma função que usa os dados
+                    this.iniciarJogoComDados(this.disponiveis);
+                } else {
+                    console.log("Falha ao receber os dados.");
+                }
+            
             disponiveis = fetchData();
             this.transicionando = true;
             this.comecarTransicaoParaFase2(); 
