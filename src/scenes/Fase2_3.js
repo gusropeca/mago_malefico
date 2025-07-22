@@ -265,6 +265,7 @@ disponiveis = "";
             this.transicionando = true;
             this.comecarTransicaoParaFase2(); 
         })
+        }
     }
     
     updateBossPequeno(time) {
