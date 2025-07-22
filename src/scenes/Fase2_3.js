@@ -368,7 +368,7 @@ disponiveis = "";
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    async function fetchData() {
+    async fetchData() {
         try {
             const url = 'http://200.130.152.78:5678/webhook/magomalefico/buscar-princesas';
             const response = await fetch(url);
