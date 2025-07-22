@@ -71,7 +71,7 @@ export class Fase2_3 extends CenaBase {
         
         this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, inimigo) => {
             fireball.disableBody(true, true);
-            inimigo.vida -= 20;
+            inimigo.vida -= 20000;
             
             inimigo.setTint(0xff0000);
             this.time.delayedCall(100, () => inimigo.clearTint());
