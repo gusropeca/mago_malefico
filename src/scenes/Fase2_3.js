@@ -244,7 +244,7 @@ export class Fase2_3 extends CenaBase {
 
         if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
             this.transicionando = true;
-            // this.comecarTransicaoParaProximaFase(); 
+            this.comecarTransicaoParaProximaFase(); 
         }
     }
     
@@ -351,7 +351,7 @@ export class Fase2_3 extends CenaBase {
 
         this.cameras.main.fadeOut(500);
         this.cameras.main.once('camerafadeoutcomplete', () => {
-            this.scene.start('Fase2_2', { vida: this.player.vida });
+            this.scene.start('CutsceneFinal', { vida: this.player.vida });
         });
     }
 
