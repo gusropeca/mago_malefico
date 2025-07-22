@@ -38,11 +38,6 @@ export class CutsceneCreditos extends Phaser.Scene {
       fontFamily: 'NewTimesRoman'
     }).setOrigin(0.5);
 
-    // Música
-    if (!this.sound.get('MusicaInicial')?.isPlaying) {
-      this.sound.add('MusicaInicial', { loop: true, volume: 0.5 }).play();
-    }
-
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
   }
 
