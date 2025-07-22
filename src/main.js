@@ -1,6 +1,8 @@
     import { Start } from './scenes/Start.js';
     import { Cutscene1 } from './scenes/Cutscene1.js'
     import { Cutscene2 } from './scenes/Cutscene2.js'
+    import { CutsceneCreditos } from './scenes/CutsceneCreditos.js'
+    import { CutsceneFinal } from './scenes/CutsceneFinal.js'
     import { TelaMorte } from './scenes/TelaMorte.js';
     import { FaseTutorial } from './scenes/FaseTutorial.js';
     import { Fase1 } from './scenes/Fase1.js';
@@ -28,7 +30,7 @@ const config = {
         }
     },
     scene: [
-        Start, Cutscene1, Cutscene2, TelaMorte, FaseTutorial, Fase1, Fase1_1, Fase1_2, Fase2, Fase2_1, Fase2_2, Fase2_3
+        Start, Cutscene1, Cutscene2, CutsceneCreditos, CutsceneFinal, TelaMorte, FaseTutorial, Fase1, Fase1_1, Fase1_2, Fase2, Fase2_1, Fase2_2, Fase2_3
     ],
     scale: {
         mode: Phaser.Scale.FIT,
