@@ -5,9 +5,9 @@ export class CutsceneFinal extends Phaser.Scene {
 
   preload() {
     
-    this.load.image('scene1', 'assets/cutscenes/CenaFinal1.png');
-    this.load.image('scene2', 'assets/cutscenes/CenaFinal2.png');
-    this.load.image('scene3', 'assets/cutscenes/CenaFinal3.png');
+    this.load.image('scene1', 'assets/Cutscenes/CenaFinal1.png');
+    this.load.image('scene2', 'assets/Cutscenes/CenaFinal2.png');
+    this.load.image('scene3', 'assets/Cutscenes/CenaFinal3.png');
 
     this.load.audio('MusicaFinal', 'assets/music/MusicaFinal.mp3');
 
