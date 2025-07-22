@@ -261,7 +261,7 @@ disponiveis = "";
                     console.log("Falha ao receber os dados.");
                 }
             
-            disponiveis = fetchData();
+            disponiveis = dadosRecebidos;
             this.transicionando = true;
             this.comecarTransicaoParaFase2(); 
         })
