@@ -6,17 +6,17 @@ export class SelecaoPrincesas extends Phaser.Scene {
   preload() {
     this.load.image('Fundo','assets/SelecaoPrincesa.png');
 
-    this.load.image('princesaAzul', 'assets/princesas/PrincesaAzul.png');
-    this.load.image('princesaLaranja', 'assets/princesas/PrincesaLaranja.png');
-    this.load.image('princesaVerde', 'assets/princesas/PrincesaVerde.png');
-    this.load.image('princesaVermelho', 'assets/princesas/PrincesaVermelha.png');
-    this.load.image('princesaVioleta', 'assets/princesas/PrincesaVioleta.png');
+    this.load.image('princesaAzul', 'assets/Princesas/PrincesaAzul.png');
+    this.load.image('princesaLaranja', 'assets/Princesas/PrincesaLaranja.png');
+    this.load.image('princesaVerde', 'assets/Princesas/PrincesaVerde.png');
+    this.load.image('princesaVermelho', 'assets/Princesas/PrincesaVermelha.png');
+    this.load.image('princesaVioleta', 'assets/Princesas/PrincesaVioleta.png');
 
-    this.load.image('princesaAzulSel', 'assets/princesas/PrincesaAzulEscolhida.png');
-    this.load.image('princesaLaranjaSel', 'assets/princesas/PrincesaLaranjaEscolhida.png');
-    this.load.image('princesaVerdeSel', 'assets/princesas/PrincesaVerdeEscolhida.png');
-    this.load.image('princesaVermelhoSel', 'assets/princesas/PrincesaVermelhaEscolhida.png');
-    this.load.image('princesaVioletaSel', 'assets/princesas/PrincesaVioleta.png');
+    this.load.image('princesaAzulSel', 'assets/Princesas/PrincesaAzulEscolhida.png');
+    this.load.image('princesaLaranjaSel', 'assets/Princesas/PrincesaLaranjaEscolhida.png');
+    this.load.image('princesaVerdeSel', 'assets/Princesas/PrincesaVerdeEscolhida.png');
+    this.load.image('princesaVermelhoSel', 'assets/Princesas/PrincesaVermelhaEscolhida.png');
+    this.load.image('princesaVioletaSel', 'assets/Princesas/PrincesaVioleta.png');
   }
 
   create() {
@@ -88,3 +88,4 @@ export class SelecaoPrincesas extends Phaser.Scene {
     }
   }
 }
+
