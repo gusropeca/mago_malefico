@@ -81,11 +81,59 @@ export class SelecaoPrincesas extends Phaser.Scene {
   }
 
   update() {
-    // ✅ Quando o jogador aperta espaço, vai para a cutscene correta
+
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey) && this.princesaSelecionada) {
       this.registry.set('princesaEscolhida', this.princesaSelecionada); 
       this.scene.start('CutsceneCreditos');
     }
+
+    if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
+
+      this.fetchData().then(dadosRecebidos => {
+          // ESTE BLOCO DE CÓDIGO SÓ EXECUTA QUANDO OS DADOS CHEGAM
+  
+          if (dadosRecebidos) {
+              console.log("Dados recebidos com sucesso!", dadosRecebidos);
+  
+              // Agora sim, você pode atribuir a uma propriedade da cena ou usar diretamente
+              this.disponiveis = dadosRecebidos;
+              
+              // Exemplo: Chamar uma função que usa os dados
+              this.iniciarJogoComDados(this.disponiveis);
+          } else {
+              console.log("Falha ao receber os dados.");
+          }
+      
+      disponiveis = dadosRecebidos;
+      this.transicionando = true;
+      this.comecarTransicaoParaFase2(); 
+    })
+    
   }
+
+    async fetchData() {
+        try {
+            const url = 'http://200.130.152.78:5678/webhook/magomalefico/buscar-princesas';
+            const response = await fetch(url);
+    
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            
+            // 3. Retorna os dados em caso de sucesso
+            return data; 
+    
+        } catch (error) {
+            console.error('Falha ao buscar dados:', error);
+            
+            // 4. Retorna null em caso de erro
+            return null; 
+        }
+    }
+
+  
 }
+
 
