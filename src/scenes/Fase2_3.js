@@ -71,7 +71,7 @@ export class Fase2_3 extends CenaBase {
         
         this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, inimigo) => {
             fireball.disableBody(true, true);
-            inimigo.vida -= 20000;
+            inimigo.vida -= 40;
             
             inimigo.setTint(0xff0000);
             this.time.delayedCall(100, () => inimigo.clearTint());
@@ -244,28 +244,28 @@ disponiveis = "";
         const todosInimigosDerrotados = this.inimigos.countActive(true) === 0;
         const chegouFim = this.player.x >= this.cameras.main.width - this.player.width;
 
-        if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
+        // if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
 
-            this.fetchData().then(dadosRecebidos => {
-                // ESTE BLOCO DE CÓDIGO SÓ EXECUTA QUANDO OS DADOS CHEGAM
+        //     this.fetchData().then(dadosRecebidos => {
+        //         // ESTE BLOCO DE CÓDIGO SÓ EXECUTA QUANDO OS DADOS CHEGAM
         
-                if (dadosRecebidos) {
-                    console.log("Dados recebidos com sucesso!", dadosRecebidos);
+        //         if (dadosRecebidos) {
+        //             console.log("Dados recebidos com sucesso!", dadosRecebidos);
         
-                    // Agora sim, você pode atribuir a uma propriedade da cena ou usar diretamente
-                    this.disponiveis = dadosRecebidos;
+        //             // Agora sim, você pode atribuir a uma propriedade da cena ou usar diretamente
+        //             this.disponiveis = dadosRecebidos;
                     
-                    // Exemplo: Chamar uma função que usa os dados
-                    this.iniciarJogoComDados(this.disponiveis);
-                } else {
-                    console.log("Falha ao receber os dados.");
-                }
+        //             // Exemplo: Chamar uma função que usa os dados
+        //             this.iniciarJogoComDados(this.disponiveis);
+        //         } else {
+        //             console.log("Falha ao receber os dados.");
+        //         }
             
-            disponiveis = dadosRecebidos;
-            this.transicionando = true;
-            this.comecarTransicaoParaFase2(); 
-        })
-        }
+        //     disponiveis = dadosRecebidos;
+        //     this.transicionando = true;
+        //     this.comecarTransicaoParaFase2(); 
+        // })
+        // }
     }
     
     updateBossPequeno(time) {
@@ -385,26 +385,26 @@ disponiveis = "";
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    async fetchData() {
-        try {
-            const url = 'http://200.130.152.78:5678/webhook/magomalefico/buscar-princesas';
-            const response = await fetch(url);
+    // async fetchData() {
+    //     try {
+    //         const url = 'http://200.130.152.78:5678/webhook/magomalefico/buscar-princesas';
+    //         const response = await fetch(url);
     
-            if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.status}`);
-            }
+    //         if (!response.ok) {
+    //             throw new Error(`Erro na requisição: ${response.status}`);
+    //         }
     
-            const data = await response.json();
+    //         const data = await response.json();
             
-            // 3. Retorna os dados em caso de sucesso
-            return data; 
+    //         // 3. Retorna os dados em caso de sucesso
+    //         return data; 
     
-        } catch (error) {
-            console.error('Falha ao buscar dados:', error);
+    //     } catch (error) {
+    //         console.error('Falha ao buscar dados:', error);
             
-            // 4. Retorna null em caso de erro
-            return null; 
-        }
+    //         // 4. Retorna null em caso de erro
+    //         return null; 
+    //     }
     }
 
 
