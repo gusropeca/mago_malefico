@@ -266,7 +266,7 @@ disponiveis = "";
         //     this.comecarTransicaoParaFase2(); 
         // })
         // }
-    }
+    // }
     
     updateBossPequeno(time) {
         const boss = this.bossPequeno;
