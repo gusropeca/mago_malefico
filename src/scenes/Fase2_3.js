@@ -173,7 +173,7 @@ export class Fase2_3 extends CenaBase {
         this.bossGrande.setScale(1.25); 
         this.bossGrande.body.setAllowGravity(true);
         // HITBOX RESTAURADA PARA OS VALORES ANTERIORES
-        this.bossGrande.setSize(70, 90);
+        this.bossGrande.setSize(120, 140);        
         this.bossGrande.setOffset(30, 20);
         this.bossGrande.setCollideWorldBounds(true);
         this.bossGrande.vida = 250;
