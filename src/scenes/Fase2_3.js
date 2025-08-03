@@ -17,7 +17,7 @@ export class Fase2_3 extends CenaBase {
         this.load.atlas('andarBoss', 'assets/sprites/AndarBoss.png', 'assets/sprites/AndarBoss.json');
         this.load.atlas('ataqueBoss', 'assets/sprites/AtaqueBoss.png', 'assets/sprites/AtaqueBoss.json');
 
-        this.load.atlas('cutsceneTransformacao', 'assets/sprites/CutsceneBoss.png', 'assets/sprites/CutsceneBoss.json');
+        this.load.atlas('cutsceneTransformacao', 'assets/Cutscenes/CutsceneBoss.png', 'assets/sprites/CutsceneBoss.json');
 
         this.load.audio('TrilhaSonoraBoss', 'assets/music/MusicaBoss.mp3');
     }
@@ -29,11 +29,7 @@ export class Fase2_3 extends CenaBase {
         this.chao = this.physics.add.staticSprite(400, 300, 'CasteloChao');
         this.background = this.add.tileSprite(400, 300, 800, 600, 'Castelo3');
 
-        this.music = this.sound.add('TrilhaSonoraBoss', { 
-            loop: true,
-            volume: 0.5
-        });
-        
+        this.music = this.sound.add('TrilhaSonoraBoss', { loop: true, volume: 0.5 });
         this.music.play();
         
         this.criarAnims();
@@ -57,21 +53,60 @@ export class Fase2_3 extends CenaBase {
         this.bossPequeno.isBossPequeno = true;
         this.criarAnimacoesBoss();
 
-        this.fireballsBoss = this.physics.add.group({
-            defaultKey: 'purpleFireball',
-            maxSize: 15
-        });
+        this.fireballsBoss = this.physics.add.group({ defaultKey: 'purpleFireball', maxSize: 15 });
         this.physics.add.collider(this.fireballsBoss, this.chao, (fb) => fb.destroy());
 
         this.physics.add.collider(this.player, this.chao);
         this.physics.add.collider(this.inimigos, this.chao);
         this.physics.add.collider(this.pocoes, this.chao);
 
-        this.estaAtacando = false;
+        this.setupCollisions();
+
+        this.barraVida = this.add.graphics();
+        this.transicionando = false;
+        this.atualizarHUD();
+    }
+    
+    criarAnimacoesBoss() {
+        this.anims.create({
+            key: 'playTransformacao',
+            frames: this.anims.generateFrameNames('cutsceneTransformacao', { 
+                prefix: 'CutsceneBoss ', 
+                start: 0, 
+                end: 13,
+                suffix: '.aseprite'
+            }),
+            frameRate: 2.5, 
+            repeat: 0
+        });
+
+        this.anims.create({
+            key: 'andarBossPequeno',
+            frames: this.anims.generateFrameNames('andarBossPequeno', { start: 0, end: 2, prefix: 'AndarBossPequeno ', suffix: '.aseprite' }),
+            frameRate: 6, repeat: -1,
+        });
+        this.anims.create({
+            key: 'ataqueBossPequeno',
+            frames: this.anims.generateFrameNames('ataqueBossPequeno', { start: 0, end: 2, prefix: 'AtaqueBossPequeno ', suffix: '.aseprite' }),
+            frameRate: 8, repeat: 0,
+        });
         
+        this.anims.create({
+            key: 'andarBossGrande',
+            frames: this.anims.generateFrameNames('andarBoss', { start: 0, end: 2, prefix: 'AndarBoss ', suffix: '.aseprite' }),
+            frameRate: 5, repeat: -1,
+        });
+        this.anims.create({
+            key: 'ataqueBossGrande',
+            frames: this.anims.generateFrameNames('ataqueBoss', { start: 0, end: 3, prefix: 'AtaqueBoss ', suffix: '.aseprite' }),
+            frameRate: 8, repeat: 0,
+        });
+    }
+    
+    setupCollisions() {
         this.physics.add.overlap(this.fireballs, this.inimigos, (fireball, inimigo) => {
             fireball.disableBody(true, true);
-            inimigo.vida -= 40;
+            inimigo.vida -= 20;
             
             inimigo.setTint(0xff0000);
             this.time.delayedCall(100, () => inimigo.clearTint());
@@ -92,7 +127,7 @@ export class Fase2_3 extends CenaBase {
 
         this.physics.add.overlap(this.player, this.inimigos, (player, inimigo) => {
             if (inimigo.isBossGrande && !player.invulneravel) {
-                const isAttacking = inimigo.anims.currentAnim && inimigo.anims.currentAnim.key === 'ataqueBossGrande';
+                const isAttacking = inimigo.anims.isPlaying && inimigo.anims.currentAnim.key === 'ataqueBossGrande';
                 if (isAttacking) {
                     this.darDanoAoPlayer(25);
                 }
@@ -104,53 +139,6 @@ export class Fase2_3 extends CenaBase {
             this.atualizarHUD();
             potion.destroy();
         });
-
-        this.barraVida = this.add.graphics();
-        this.transicionando = false;
-        this.atualizarHUD();
-    }
-    
-    criarAnimacoesBoss() {
-
-        this.anims.create({
-            key: 'playTransformacao',
-            frames: this.anims.generateFrameNames('cutsceneTransformacao', { 
-                prefix: 'CutsceneBoss ', 
-                start: 0, 
-                end: 14,
-                suffix: '.aseprite'
-            }),
-            frameRate: 2.5, 
-            repeat: 0
-        });
-
-
-        this.anims.create({
-            key: 'andarBossPequeno',
-            frames: this.anims.generateFrameNames('andarBossPequeno', { start: 0, end: 2, prefix: 'AndarBossPequeno ', suffix: '.aseprite' }),
-            frameRate: 6,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'ataqueBossPequeno',
-            frames: this.anims.generateFrameNames('ataqueBossPequeno', { start: 0, end: 2, prefix: 'AtaqueBossPequeno ', suffix: '.aseprite' }),
-            frameRate: 8,
-            repeat: 0,
-        });
-        
-
-        this.anims.create({
-            key: 'andarBossGrande',
-            frames: this.anims.generateFrameNames('andarBoss', { start: 0, end: 2, prefix: 'AndarBoss ', suffix: '.aseprite' }),
-            frameRate: 5,
-            repeat: -1,
-        });
-        this.anims.create({
-            key: 'ataqueBossGrande',
-            frames: this.anims.generateFrameNames('ataqueBoss', { start: 0, end: 3, prefix: 'AtaqueBoss ', suffix: '.aseprite' }),
-            frameRate: 8,
-            repeat: 0,
-        });
     }
 
     iniciarTransformacaoBoss() {
@@ -159,8 +147,7 @@ export class Fase2_3 extends CenaBase {
         this.faseBoss = 2;
         this.gameState = 'CUTSCENE';
 
-        //this.music.stop();
-        this.player.setActive(false).setVisible(false); // Esconde o jogador durante a cutscene
+        this.player.setActive(false).setVisible(false);
 
         const pos = { x: this.bossPequeno.x, y: this.bossPequeno.y };
         this.bossPequeno.destroy();
@@ -168,7 +155,7 @@ export class Fase2_3 extends CenaBase {
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
         const cutsceneSprite = this.add.sprite(centerX, centerY, 'cutsceneTransformacao');
-        cutsceneSprite.setScrollFactor(0); // Fixa a cutscene na câmara, ignorando o scroll do mundo
+        cutsceneSprite.setScrollFactor(0);
         
         cutsceneSprite.play('playTransformacao');
 
@@ -176,9 +163,8 @@ export class Fase2_3 extends CenaBase {
             cutsceneSprite.destroy();
             this.criarBossGrande(pos.x, pos.y);
             
-            this.player.setActive(true).setVisible(true); // Mostra o jogador novamente
+            this.player.setActive(true).setVisible(true);
             this.gameState = 'FIGHTING';
-            //this.music.play();
         });
     }
 
@@ -186,8 +172,9 @@ export class Fase2_3 extends CenaBase {
         this.bossGrande = this.inimigos.create(x, y, 'andarBoss');
         this.bossGrande.setScale(1.25); 
         this.bossGrande.body.setAllowGravity(true);
-        this.bossGrande.setSize(120, 140);
-        this.bossGrande.setOffset(30, 15);
+        // HITBOX RESTAURADA PARA OS VALORES ANTERIORES
+        this.bossGrande.setSize(70, 90);
+        this.bossGrande.setOffset(30, 20);
         this.bossGrande.setCollideWorldBounds(true);
         this.bossGrande.vida = 250;
         this.bossGrande.tempoUltimoAtaque = 0;
@@ -195,7 +182,7 @@ export class Fase2_3 extends CenaBase {
     }
 
     dispararFireballBoss() {
-        if (!this.bossPequeno.active || !this.player.active) return;
+        if (!this.bossPequeno || !this.bossPequeno.active || !this.player.active) return;
         
         const fireball = this.fireballsBoss.get(this.bossPequeno.x, this.bossPequeno.y);
         if (fireball) {
@@ -216,18 +203,17 @@ export class Fase2_3 extends CenaBase {
             this.player.invulneravel = false;
         });
     }
-    
-disponiveis = "";
-    
+
     update(time) {
         if (this.gameState === 'CUTSCENE') {
+            // Pausa toda a lógica de jogo durante a cutscene
+            this.player.setVelocity(0);
             return;
         }
 
         if (this.player.vida <= 0 && !this.morreu) {
             this.morreu = true;
             this.music.stop();
-
             this.scene.start('TelaMorte');
             return;
         }
@@ -244,44 +230,26 @@ disponiveis = "";
         const todosInimigosDerrotados = this.inimigos.countActive(true) === 0;
         const chegouFim = this.player.x >= this.cameras.main.width - this.player.width;
 
-        // if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
-
-        //     this.fetchData().then(dadosRecebidos => {
-        //         // ESTE BLOCO DE CÓDIGO SÓ EXECUTA QUANDO OS DADOS CHEGAM
-        
-        //         if (dadosRecebidos) {
-        //             console.log("Dados recebidos com sucesso!", dadosRecebidos);
-        
-        //             // Agora sim, você pode atribuir a uma propriedade da cena ou usar diretamente
-        //             this.disponiveis = dadosRecebidos;
-                    
-        //             // Exemplo: Chamar uma função que usa os dados
-        //             this.iniciarJogoComDados(this.disponiveis);
-        //         } else {
-        //             console.log("Falha ao receber os dados.");
-        //         }
-            
-        //     disponiveis = dadosRecebidos;
-        //     this.transicionando = true;
-        //     this.comecarTransicaoParaFase2(); 
-        // })
-        // }
+        if (!this.transicionando && todosInimigosDerrotados && chegouFim) {
+            this.transicionando = true;
+            this.comecarTransicaoParaFaseFinal(); 
+        }
     }
     
     updateBossPequeno(time) {
         const boss = this.bossPequeno;
-        if (!boss.active) return;
-        const distancia = Phaser.Math.Distance.Between(this.player.x, this.player.y, boss.x, boss.y);
+        const distancia = Phaser.Math.Distance.Between(this.player.x, boss.x, this.player.y, boss.y);
         const isAttacking = boss.anims.isPlaying && boss.anims.currentAnim.key === 'ataqueBossPequeno';
         
         if (isAttacking) return;
 
         if (distancia > 450) {
             const speed = 70;
-            this.physics.moveToObject(boss, this.player, speed);
+            if (this.player.x < boss.x) boss.setVelocityX(-speed);
+            else boss.setVelocityX(speed);
             boss.play('andarBossPequeno', true);
         } else {
-            boss.setVelocity(0);
+            boss.setVelocityX(0);
             if (time > boss.tempoUltimoTiro) {
                 boss.play('ataqueBossPequeno', true);
                 for (let i = 0; i < 3; i++) {
@@ -297,8 +265,7 @@ disponiveis = "";
 
     updateBossGrande(time) {
         const boss = this.bossGrande;
-        if (!boss.active) return;
-        const distancia = Phaser.Math.Distance.Between(this.player.x, this.player.y, boss.x, boss.y);
+        const distancia = Phaser.Math.Distance.Between(this.player.x, boss.x, this.player.y, boss.y);
         const isAttacking = boss.anims.isPlaying && boss.anims.currentAnim.key === 'ataqueBossGrande';
         const attackRange = 90;
 
@@ -313,7 +280,7 @@ disponiveis = "";
             else boss.setVelocityX(speed);
             boss.play('andarBossGrande', true);
         } else {
-            boss.setVelocity(0);
+            boss.setVelocityX(0);
             if (time > boss.tempoUltimoAtaque) {
                 boss.play('ataqueBossGrande', true);
                 boss.tempoUltimoAtaque = time + 2500;
@@ -349,25 +316,24 @@ disponiveis = "";
         if (Phaser.Input.Keyboard.JustDown(this.attackKey)) {
             this.atacar();
         }
-
-         if (!this.estaAtacando) {
+        
+        if (!this.estaAtacando) {
             if (moving) {
                 this.player.play('andarMago', true);
             } else {
-               /* this.player.anims.stop();
+                this.player.anims.stop();
                 this.player.setTexture('magoAtlas', 'AndarDoMago 0.aseprite');
-                this.player.setOffset(0, 14); */
+                this.player.setOffset(0, 14);
             }
         }
     }
 
-    comecarTransicaoParaFase2() {
-        this.sound.stopByKey('TrilhaSonoraBoss');
+    comecarTransicaoParaFaseFinal() {
+        this.music.stop();
         this.player.setVelocity(0, 0);
         this.cursors.left.enabled = false;
         this.cursors.right.enabled = false;
         this.spaceKey.enabled = false;
-        this.music.stop();
 
         this.cameras.main.fadeOut(500);
         this.cameras.main.once('camerafadeoutcomplete', () => {
@@ -382,32 +348,4 @@ disponiveis = "";
         this.barraVida.fillStyle(0xff0000);
         this.barraVida.fillRect(22, 22, Math.max(0, this.player.vida), 10);
     }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // async fetchData() {
-    //     try {
-    //         const url = 'http://200.130.152.78:5678/webhook/magomalefico/buscar-princesas';
-    //         const response = await fetch(url);
-    
-    //         if (!response.ok) {
-    //             throw new Error(`Erro na requisição: ${response.status}`);
-    //         }
-    
-    //         const data = await response.json();
-            
-    //         // 3. Retorna os dados em caso de sucesso
-    //         return data; 
-    
-    //     } catch (error) {
-    //         console.error('Falha ao buscar dados:', error);
-            
-    //         // 4. Retorna null em caso de erro
-    //         return null; 
-    //     }
-    // }
-
-
-
-    
 }
