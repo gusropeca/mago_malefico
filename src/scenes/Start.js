@@ -51,7 +51,7 @@ export class Start extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
             this.background.destroy();
-            this.scene.start('Fase2_3'); 
+            this.scene.start('FaseTutorial'); 
         }
 
     }
