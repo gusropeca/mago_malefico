@@ -5,9 +5,9 @@ export class CutsceneFinal extends Phaser.Scene {
 
   preload() {
     
-    this.load.image('scene1', 'assets/Cutscenes/CenaFinal1.png');
-    this.load.image('scene2', 'assets/Cutscenes/CenaFinal2.png');
-    this.load.image('scene3', 'assets/Cutscenes/CenaFinal3.png');
+    this.load.image('finalscene1', 'assets/Cutscenes/CenaFinal1.png');
+    this.load.image('finalscene2', 'assets/Cutscenes/CenaFinal2.png');
+    this.load.image('finalscene3', 'assets/Cutscenes/CenaFinal3.png');
 
     this.load.audio('MusicaFinal', 'assets/music/MusicaFinal.mp3');
 
@@ -23,15 +23,15 @@ export class CutsceneFinal extends Phaser.Scene {
 
     this.etapas = [
         {
-        imagem: 'scene1',
+        imagem: 'finalscene1',
         texto: 'O mago, depois de muito esforço, finalmente derrotou o Rei.'
       },
       {
-        imagem: 'scene2',
+        imagem: 'finalscene2',
         texto: 'Ele mal podia esperar para colocar as mãos em seu glorioso prêmio...'
       },
       {
-        imagem: 'scene3',
+        imagem: 'finalscene3',
         texto: 'As princesas, chocadas e perplexas, não tiveram outra opção a não ser se submeter à vontade do Mago Maléfico.'
       }
     ];
@@ -81,4 +81,5 @@ update() {
     }
   }
 }
+
 
